@@ -182,19 +182,10 @@ const Navbar = () => {
             ))
           )}
         </div>
-
-        <div className="hidden md:flex items-center gap-3">
-          {loading ? (
-            <div className="h-9 w-28 bg-white/15 rounded-full animate-pulse"></div>
-          ) : (
-            <button
-              onClick={() => navigate("/services/ai-product-photography")}
-              className="bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-200 cursor-pointer whitespace-nowrap"
-            >
-              احجز مشروعك
-            </button>
-          )}
+ <div  className="flex items-center gap-2 cursor-pointer">
+          
         </div>
+         
 
         <button
           className="md:hidden w-10 h-10 flex items-center justify-center text-white cursor-pointer"
@@ -221,14 +212,7 @@ const Navbar = () => {
               </button>
             ))
           )}
-          {!loading && (
-            <button
-              onClick={() => { setMenuOpen(false); navigate("/services/ai-product-photography"); }}
-              className="bg-blue-600 text-white text-center py-3 rounded-full font-semibold mt-2 cursor-pointer"
-            >
-              احجز مشروعك
-            </button>
-          )}
+          
         </div>
       )}
     </nav>

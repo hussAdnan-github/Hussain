@@ -141,31 +141,7 @@ const BooksSection = () => {
           ))}
         </div>
 
-        {/* CTA Banner */}
-        <div className="mt-12 bg-gradient-to-l from-blue-600 to-blue-800 rounded-2xl p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-right">
-            <h3 className="text-white font-black text-xl md:text-2xl mb-2">
-              {texts.cta_title}
-            </h3>
-            <p className="text-white/70 text-sm">
-              {texts.cta_subtitle}
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-2 flex-shrink-0">
-            <button
-              onClick={() => navigate("/services/consultation")}
-              className="bg-white text-blue-700 font-bold px-6 py-3 rounded-full hover:bg-blue-50 transition-all duration-200 cursor-pointer whitespace-nowrap text-sm"
-            >
-              احجز جلسة مجانية
-            </button>
-            <button
-              onClick={() => navigate("/services/ai-product-photography")}
-              className="border-2 border-white/40 text-white font-bold px-6 py-3 rounded-full hover:border-white transition-all duration-200 cursor-pointer whitespace-nowrap text-sm"
-            >
-              اطلب عرض سعر
-            </button>
-          </div>
-        </div>
+        
 
         <div className="text-center mt-10">
           <button

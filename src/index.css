@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Clients / partners marquee (two-row carousel) */
+@keyframes clients-marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes clients-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.clients-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.clients-track-left {
+  animation: clients-marquee-left 45s linear infinite;
+}
+
+.clients-track-right {
+  animation: clients-marquee-right 45s linear infinite;
+}
+
+.clients-marquee:hover .clients-track-left,
+.clients-marquee:hover .clients-track-right {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clients-track-left,
+  .clients-track-right {
+    animation: none;
+  }
+}

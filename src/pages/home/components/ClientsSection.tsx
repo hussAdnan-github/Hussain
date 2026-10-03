@@ -13,8 +13,6 @@ interface ClientLogo {
 
 // Minimum number of partners required to switch from static layout to the carousel.
 const CAROUSEL_MIN_COUNT = 4;
-// Maximum number of partner logos shown inside the home carousel.
-const MAX_CAROUSEL_ITEMS = 6;
 
 interface ClientCardProps {
   client: ClientLogo;
@@ -22,21 +20,22 @@ interface ClientCardProps {
 }
 
 const ClientCard = ({ client, className = "" }: ClientCardProps) => {
-  const cardClass = `group bg-background-100 border border-background-200/70 rounded-lg flex items-center justify-center px-4 transition-all duration-300 hover:border-primary-300 hover:bg-background-50 ${className}`;
+  const containerClass = `group flex items-center justify-center p-2 transition-transform duration-300 ${className}`;
 
   const inner = (
     <div className="w-full h-full flex items-center justify-center">
       {client.logo_url ? (
-        <div className="w-full h-12 md:h-14 flex items-center justify-center">
+        <div className="w-full h-full flex items-center justify-center">
           <img
             src={client.logo_url}
             alt={client.name}
             title={client.name}
-            className="max-w-full max-h-full object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+            className="max-h-12 md:max-h-14 max-w-full w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-110 select-none pointer-events-none"
+            loading="lazy"
           />
         </div>
       ) : (
-        <span className="text-foreground-700 group-hover:text-foreground-950 font-bold text-sm md:text-base text-center leading-snug transition-colors">
+        <span className="text-foreground-700 group-hover:text-primary-600 font-bold text-sm md:text-base text-center leading-snug transition-colors line-clamp-1">
           {client.name}
         </span>
       )}
@@ -49,12 +48,12 @@ const ClientCard = ({ client, className = "" }: ClientCardProps) => {
       target="_blank"
       rel="noopener noreferrer"
       title={client.name}
-      className={`${cardClass} cursor-pointer`}
+      className={`${containerClass} cursor-pointer`}
     >
       {inner}
     </a>
   ) : (
-    <div title={client.name} className={cardClass}>
+    <div title={client.name} className={`${containerClass} cursor-default`}>
       {inner}
     </div>
   );
@@ -75,12 +74,12 @@ const MarqueeRow = ({ items, direction }: MarqueeRowProps) => {
   const loop = [...tile, ...tile];
 
   return (
-    <div className={`clients-track ${direction === "left" ? "clients-track-left" : "clients-track-right"}`}>
+    <div className={`clients-track ${direction === "left" ? "clients-track-left" : "clients-track-right"} py-2`}>
       {loop.map((client, index) => (
         <ClientCard
           key={`${client.id}-${index}`}
           client={client}
-          className="w-40 md:w-48 h-24 md:h-28 mx-1.5 md:mx-2 flex-shrink-0"
+          className="w-36 md:w-48 h-16 md:h-20 mx-4 md:mx-6 flex-shrink-0"
         />
       ))}
     </div>
@@ -148,7 +147,7 @@ const ClientsSection = () => {
   }
 
   const useCarousel = clients.length >= CAROUSEL_MIN_COUNT;
-  const displayedClients = clients.slice(0, MAX_CAROUSEL_ITEMS);
+  const displayedClients = clients;
   const rowOne = displayedClients.filter((_, index) => index % 2 === 0);
   const rowTwo = displayedClients.filter((_, index) => index % 2 === 1);
 
@@ -178,19 +177,19 @@ const ClientsSection = () => {
             <div className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-28 bg-gradient-to-r from-background-50 to-transparent z-10"></div>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-28 bg-gradient-to-l from-background-50 to-transparent z-10"></div>
 
-            <div className="space-y-3 md:space-y-4">
+            <div className="space-y-4 md:space-y-6">
               <MarqueeRow items={rowOne} direction="left" />
               <MarqueeRow items={rowTwo} direction="right" />
             </div>
           </div>
         ) : (
           /* Static layout for fewer than 4 partners */
-          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
             {displayedClients.map((client) => (
               <ClientCard
                 key={client.id}
                 client={client}
-                className="w-40 md:w-48 h-24 md:h-28"
+                className="w-36 md:w-48 h-16 md:h-20"
               />
             ))}
           </div>

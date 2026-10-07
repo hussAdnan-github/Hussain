@@ -20,7 +20,7 @@ interface ClientCardProps {
 }
 
 const ClientCard = ({ client, className = "" }: ClientCardProps) => {
-  const containerClass = `group flex items-center justify-center p-2 transition-transform duration-300 ${className}`;
+  const containerClass = `group flex items-center justify-center p-1 md:p-1.5 transition-transform duration-300 ${className}`;
 
   const inner = (
     <div className="w-full h-full flex items-center justify-center">
@@ -30,7 +30,7 @@ const ClientCard = ({ client, className = "" }: ClientCardProps) => {
             src={client.logo_url}
             alt={client.name}
             title={client.name}
-            className="max-h-12 md:max-h-14 max-w-full w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-110 select-none pointer-events-none"
+            className="max-h-14 md:max-h-16 max-w-full w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105 select-none pointer-events-none"
             loading="lazy"
           />
         </div>
@@ -69,17 +69,17 @@ const MarqueeRow = ({ items, direction }: MarqueeRowProps) => {
 
   // Repeat the row enough times so the strip always fills the viewport,
   // then duplicate the whole tile so a -50% shift loops seamlessly.
-  const repeats = Math.max(1, Math.ceil(8 / items.length));
+  const repeats = Math.max(2, Math.ceil(10 / items.length));
   const tile = Array.from({ length: repeats }).flatMap(() => items);
   const loop = [...tile, ...tile];
 
   return (
-    <div className={`clients-track ${direction === "left" ? "clients-track-left" : "clients-track-right"} py-2`}>
+    <div className={`clients-track ${direction === "left" ? "clients-track-left" : "clients-track-right"} py-1.5 md:py-2`}>
       {loop.map((client, index) => (
         <ClientCard
           key={`${client.id}-${index}`}
           client={client}
-          className="w-36 md:w-48 h-16 md:h-20 mx-4 md:mx-6 flex-shrink-0"
+          className="w-36 md:w-44 h-16 md:h-20 mx-2 md:mx-3 flex-shrink-0"
         />
       ))}
     </div>
@@ -177,19 +177,19 @@ const ClientsSection = () => {
             <div className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-28 bg-gradient-to-r from-background-50 to-transparent z-10"></div>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-28 bg-gradient-to-l from-background-50 to-transparent z-10"></div>
 
-            <div className="space-y-4 md:space-y-6">
+            <div className="space-y-3 md:space-y-4">
               <MarqueeRow items={rowOne} direction="left" />
               <MarqueeRow items={rowTwo} direction="right" />
             </div>
           </div>
         ) : (
           /* Static layout for fewer than 4 partners */
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
             {displayedClients.map((client) => (
               <ClientCard
                 key={client.id}
                 client={client}
-                className="w-36 md:w-48 h-16 md:h-20"
+                className="w-36 md:w-44 h-16 md:h-20"
               />
             ))}
           </div>

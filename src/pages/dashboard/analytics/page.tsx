@@ -9,7 +9,6 @@ interface AnalyticsStats {
   services: number;
   prompts: number;
   testimonials: number;
-  messages: number;
   totalOrders: number;
   totalRevenue: number;
   avgRating: number;
@@ -22,7 +21,7 @@ interface MonthlyRevenue {
 
 const DashboardAnalyticsPage = () => {
   const [stats, setStats] = useState<AnalyticsStats>({
-    portfolio: 0, blog: 0, books: 0, services: 0, prompts: 0, testimonials: 0, messages: 0, totalOrders: 0, totalRevenue: 0, avgRating: 0,
+    portfolio: 0, blog: 0, books: 0, services: 0, prompts: 0, testimonials: 0, totalOrders: 0, totalRevenue: 0, avgRating: 0,
   });
   const [monthlyRevenue, setMonthlyRevenue] = useState<MonthlyRevenue[]>([]);
   const [loading, setLoading] = useState(true);
@@ -37,7 +36,6 @@ const DashboardAnalyticsPage = () => {
           { count: servicesCount },
           { count: promptsCount },
           { count: testimonialsCount },
-          { count: messagesCount },
           { count: ordersCount },
           { data: orderData },
           { data: ratingData },
@@ -49,7 +47,6 @@ const DashboardAnalyticsPage = () => {
           supabase.from("services").select("*", { count: "exact", head: true }),
           supabase.from("prompts").select("*", { count: "exact", head: true }),
           supabase.from("testimonials").select("*", { count: "exact", head: true }),
-          supabase.from("contact_messages").select("*", { count: "exact", head: true }),
           supabase.from("order_headers").select("*", { count: "exact", head: true }),
           supabase.from("order_headers").select("subtotal_items"),
           supabase.from("testimonials").select("rating"),
@@ -101,7 +98,6 @@ const DashboardAnalyticsPage = () => {
           services: servicesCount || 0,
           prompts: promptsCount || 0,
           testimonials: testimonialsCount || 0,
-          messages: messagesCount || 0,
           totalOrders: ordersCount || 0,
           totalRevenue,
           avgRating,
@@ -125,7 +121,6 @@ const DashboardAnalyticsPage = () => {
     { label: "الكتب", value: stats.books, icon: "ri-book-2-line", color: "text-violet-400" },
     { label: "الخدمات", value: stats.services, icon: "ri-customer-service-2-line", color: "text-amber-400" },
     { label: "البرومبتات", value: stats.prompts, icon: "ri-magic-line", color: "text-blue-300" },
-    { label: "الرسائل", value: stats.messages, icon: "ri-message-3-line", color: "text-violet-300" },
   ];
 
   const maxRevenue = Math.max(...monthlyRevenue.map((m) => m.total), 1);
@@ -276,12 +271,12 @@ const DashboardAnalyticsPage = () => {
               <div className="text-xs text-white/40">خدمات</div>
             </div>
             <div className="bg-[#0d1b2e] border border-white/10 rounded-xl p-3 text-center">
-              <div className="text-lg font-black text-blue-300">{stats.testimonials}</div>
-              <div className="text-xs text-white/40">تقييمات</div>
+              <div className="text-lg font-black text-blue-300">{stats.prompts}</div>
+              <div className="text-xs text-white/40">برومبتات</div>
             </div>
             <div className="bg-[#0d1b2e] border border-white/10 rounded-xl p-3 text-center">
-              <div className="text-lg font-black text-violet-300">{stats.messages}</div>
-              <div className="text-xs text-white/40">رسائل</div>
+              <div className="text-lg font-black text-emerald-400">{stats.testimonials}</div>
+              <div className="text-xs text-white/40">تقييمات</div>
             </div>
           </div>
 

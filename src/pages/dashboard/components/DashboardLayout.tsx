@@ -17,7 +17,6 @@ const navItems = [
   { icon: "ri-magic-line", label: "البرومبتات", path: "/dashboard/prompts" },
   { icon: "ri-article-line", label: "المدونة", path: "/dashboard/blog" },
   { icon: "ri-customer-service-2-line", label: "الخدمات", path: "/dashboard/services" },
-  { icon: "ri-message-3-line", label: "الرسائل", path: "/dashboard/messages" },
   { icon: "ri-bar-chart-2-line", label: "التحليلات", path: "/dashboard/analytics" },
   { icon: "ri-layout-bottom-2-line", label: "الفوتر", path: "/dashboard/footer" },
   { icon: "ri-contacts-book-2-line", label: "التواصل", path: "/dashboard/contact" },

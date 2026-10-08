@@ -22,8 +22,6 @@ import DashboardPromptsPage from "../pages/dashboard/prompts/page";
 import DashboardPromptDetailPage from "../pages/dashboard/prompts/detail/page";
 import DashboardBlogPage from "../pages/dashboard/blog/page";
 import DashboardBlogDetailPage from "../pages/dashboard/blog/detail/page";
-import DashboardMessagesPage from "../pages/dashboard/messages/page";
-import DashboardMessageDetailPage from "../pages/dashboard/messages/detail/page";
 import DashboardServicesPage from "../pages/dashboard/services/page";
 import DashboardServiceDetailPage from "../pages/dashboard/services/detail/page";
 import DashboardAnalyticsPage from "../pages/dashboard/analytics/page";
@@ -51,8 +49,6 @@ const dashboardRoutes: RouteObject[] = [
   { path: "/dashboard/prompts/:id", element: <AuthGuard><DashboardPromptDetailPage /></AuthGuard> },
   { path: "/dashboard/blog", element: <AuthGuard><DashboardBlogPage /></AuthGuard> },
   { path: "/dashboard/blog/:id", element: <AuthGuard><DashboardBlogDetailPage /></AuthGuard> },
-  { path: "/dashboard/messages", element: <AuthGuard><DashboardMessagesPage /></AuthGuard> },
-  { path: "/dashboard/messages/:id", element: <AuthGuard><DashboardMessageDetailPage /></AuthGuard> },
   { path: "/dashboard/services", element: <AuthGuard><DashboardServicesPage /></AuthGuard> },
   { path: "/dashboard/services/:id", element: <AuthGuard><DashboardServiceDetailPage /></AuthGuard> },
   { path: "/dashboard/analytics", element: <AuthGuard><DashboardAnalyticsPage /></AuthGuard> },

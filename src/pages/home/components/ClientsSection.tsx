@@ -20,7 +20,7 @@ interface ClientCardProps {
 }
 
 const ClientCard = ({ client, className = "" }: ClientCardProps) => {
-  const containerClass = `group flex items-center justify-center p-1 md:p-1.5 transition-transform duration-300 ${className}`;
+  const containerClass = `group flex items-center justify-center transition-transform duration-300 ${className}`;
 
   const inner = (
     <div className="w-full h-full flex items-center justify-center">
@@ -30,12 +30,12 @@ const ClientCard = ({ client, className = "" }: ClientCardProps) => {
             src={client.logo_url}
             alt={client.name}
             title={client.name}
-            className="max-h-14 md:max-h-16 max-w-full w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105 select-none pointer-events-none"
+            className="max-h-12 md:max-h-14 max-w-[130px] md:max-w-[160px] w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105 select-none pointer-events-none"
             loading="lazy"
           />
         </div>
       ) : (
-        <span className="text-foreground-700 group-hover:text-primary-600 font-bold text-sm md:text-base text-center leading-snug transition-colors line-clamp-1">
+        <span className="text-foreground-700 group-hover:text-primary-600 font-bold text-xs md:text-sm text-center leading-snug transition-colors line-clamp-1 whitespace-nowrap px-2">
           {client.name}
         </span>
       )}
@@ -69,7 +69,7 @@ const MarqueeRow = ({ items, direction }: MarqueeRowProps) => {
 
   // Repeat the row enough times so the strip always fills the viewport,
   // then duplicate the whole tile so a -50% shift loops seamlessly.
-  const repeats = Math.max(2, Math.ceil(10 / items.length));
+  const repeats = Math.max(4, Math.ceil(24 / items.length));
   const tile = Array.from({ length: repeats }).flatMap(() => items);
   const loop = [...tile, ...tile];
 
@@ -79,7 +79,7 @@ const MarqueeRow = ({ items, direction }: MarqueeRowProps) => {
         <ClientCard
           key={`${client.id}-${index}`}
           client={client}
-          className="w-36 md:w-44 h-16 md:h-20 mx-2 md:mx-3 flex-shrink-0"
+          className="h-14 md:h-16 px-2.5 sm:px-3.5 md:px-4 mx-1 sm:mx-1.5 md:mx-2 flex-shrink-0"
         />
       ))}
     </div>
@@ -189,7 +189,7 @@ const ClientsSection = () => {
               <ClientCard
                 key={client.id}
                 client={client}
-                className="w-36 md:w-44 h-16 md:h-20"
+                className="h-14 md:h-16 px-4 md:px-6"
               />
             ))}
           </div>
